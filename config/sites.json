@@ -9,6 +9,6 @@
     "domain": "https://bangla.thedailystar.net",
     "output_file": "output/bangla.thedailystar.xlsx",
     "db_file": "output/bangla.thedailystar.db",
-    "process_percentage": 3.0
+    "process_percentage": 01.0
   }
 ]
