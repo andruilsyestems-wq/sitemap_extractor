@@ -8,7 +8,7 @@ on:
 
   # ✅ Run daily at 5 AM Bangladesh Time (11 PM UTC)
   schedule:
-  - cron: '40 23 * * *'
+  - cron: '45 23 * * *'
 
   # ✅ Manual run button
   workflow_dispatch:
