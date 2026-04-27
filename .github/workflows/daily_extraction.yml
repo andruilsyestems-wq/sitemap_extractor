@@ -1,16 +1,11 @@
-name: 🕔 Daily Sitemap Extraction - 5 AM Bangladesh Time
+name: 🕔 Daily Sitemap Extraction - 5:55 AM Bangladesh Time
 
 on:
-  # ✅ Run immediately when you push/update repo
-  push:
-    branches:
-      - main
-
-  # ✅ Run daily at 5 AM Bangladesh Time (11 PM UTC)
+  # ✅ Run daily ONLY at 5:55 AM Bangladesh Time (11:55 PM UTC)
   schedule:
-  - cron: '50 23 * * *'
+    - cron: '55 23 * * *'
 
-  # ✅ Manual run button
+  # ✅ Manual run button only
   workflow_dispatch:
     inputs:
       process_percentage:
