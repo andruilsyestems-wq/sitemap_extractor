@@ -6,9 +6,9 @@
     "process_percentage": 5.0
   },
   {
-    "domain": "https://www.thedailystar.net",
-    "output_file": "output/dailystar.xlsx",
-    "db_file": "output/dailystar.db",
-    "process_percentage": 2.0
+    "domain": "https://bangla.thedailystar.net",
+    "output_file": "output/bangla.thedailystar.xlsx",
+    "db_file": "output/bangla.thedailystar.db",
+    "process_percentage": 3.0
   }
 ]
