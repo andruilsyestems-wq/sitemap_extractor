@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+env/
+.venv/
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs - keep the folder but not local dev logs
+logs/*.log.bak
+
+# Keep output folder structure but ignore local test outputs
+# (Remove these lines if you want to commit outputs)
+# output/*.xlsx
+# output/*.db
+
+# Secrets
+.env
+secrets.json
