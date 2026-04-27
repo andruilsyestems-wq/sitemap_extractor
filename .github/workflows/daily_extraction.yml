@@ -1,0 +1,4 @@
+on:
+  schedule:
+    - cron: 'your-cron-here'
+  workflow_dispatch:
