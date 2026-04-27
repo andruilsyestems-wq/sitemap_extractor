@@ -1,0 +1,14 @@
+[
+  {
+    "domain": "https://www.prothomalo.com",
+    "output_file": "output/prothomalo.xlsx",
+    "db_file": "output/prothomalo.db",
+    "process_percentage": 100.0
+  },
+  {
+    "domain": "https://www.thedailystar.net",
+    "output_file": "output/dailystar.xlsx",
+    "db_file": "output/dailystar.db",
+    "process_percentage": 100.0
+  }
+]
