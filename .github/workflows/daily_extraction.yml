@@ -1,9 +1,9 @@
-name: 🕔 Daily Sitemap Extraction - 5:55 AM Bangladesh Time
+name: 🕔 Daily Sitemap Extraction - 6:00 AM Bangladesh Time (28 April)
 
 on:
-  # ✅ Run daily ONLY at 5:55 AM Bangladesh Time (11:55 PM UTC)
+  # ✅ Run ONLY on 28 April at 6:00 AM Bangladesh Time
   schedule:
-    - cron: '55 23 * * *'
+    - cron: '0 0 28 4 *'
 
   # ✅ Manual run button only
   workflow_dispatch:
