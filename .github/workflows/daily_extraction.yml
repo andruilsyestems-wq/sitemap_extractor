@@ -1,4 +1,109 @@
+name: 🕔 Daily Sitemap Extraction - 5 AM Bangladesh Time
+
 on:
+  # ✅ Run immediately when you push/update repo
+  push:
+    branches:
+      - main
+
+  # ✅ Run daily at 5 AM Bangladesh Time (11 PM UTC)
   schedule:
-    - cron: 'your-cron-here'
+    - cron: '0 23 * * *'
+
+  # ✅ Manual run button
   workflow_dispatch:
+    inputs:
+      process_percentage:
+        description: 'Percentage of URLs to process (0.01 - 100)'
+        required: false
+        default: '100'
+      debug_mode:
+        description: 'Enable debug logging'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  extract-sitemaps:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 📦 Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: ✅ Validate Sites Config
+        run: |
+          python -c "
+          import json, sys, os
+          config_path = 'config/sites.json'
+          if not os.path.exists(config_path):
+              print('❌ config/sites.json not found!')
+              sys.exit(1)
+          with open(config_path) as f:
+              sites = json.load(f)
+          if not sites:
+              print('❌ No sites in config!')
+              sys.exit(1)
+          print(f'✅ Found {len(sites)} site(s)')
+          "
+
+      - name: 📁 Prepare Directories
+        run: mkdir -p output logs
+
+      - name: 🚀 Run Sitemap Extraction
+        env:
+          PROCESS_PERCENTAGE: ${{ github.event.inputs.process_percentage || '100' }}
+        run: |
+          python -c "
+          import os, json, asyncio, sys
+          sys.path.insert(0, 'src')
+          from extractor import run_extraction, load_sites_config
+
+          pct = float(os.environ.get('PROCESS_PERCENTAGE', '100'))
+          sites = load_sites_config('config/sites.json')
+
+          if sites:
+              asyncio.run(run_extraction(sites, pct))
+          else:
+              raise Exception('No sites found')
+          "
+
+      - name: 📤 Upload Output Files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extraction-output
+          path: |
+            output/
+            logs/
+
+      - name: 💾 Commit Output Files
+        if: success()
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git add output/ logs/ || true
+
+          if git diff --staged --quiet; then
+            echo "No changes"
+          else
+            git commit -m "🤖 Auto extraction"
+            git push
+          fi
