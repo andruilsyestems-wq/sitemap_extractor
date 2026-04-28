@@ -1,11 +1,11 @@
-name: 🕔 Daily Sitemap Extraction - 6:00 AM Bangladesh Time (28 April)
+name: 🕔 Daily Sitemap Extraction - 6:30 AM Bangladesh Time
 
 on:
-  # ✅ Run ONLY on 28 April at 6:00 AM Bangladesh Time
+  # ✅ Runs every day at 6:30 AM Bangladesh Time (00:30 UTC)
   schedule:
-    - cron: '12 0 * * *'
+    - cron: "30 0 * * *"
 
-  # ✅ Manual run button only
+  # ✅ Manual trigger option
   workflow_dispatch:
     inputs:
       process_percentage:
@@ -67,7 +67,7 @@ jobs:
           PROCESS_PERCENTAGE: ${{ github.event.inputs.process_percentage || '100' }}
         run: |
           python -c "
-          import os, json, asyncio, sys
+          import os, asyncio, sys
           sys.path.insert(0, 'src')
           from extractor import run_extraction, load_sites_config
 
