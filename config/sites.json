@@ -1,5 +1,4 @@
-
-  {
+ {
     "domain": "https://www.banglatribune.com",
     "output_file": "output/banglatribune.xlsx",
     "db_file": "output/banglatribune.db",
