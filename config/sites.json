@@ -1,6 +1,11 @@
-{
-  "domain": "https://www.banglatribune.com",
-  "output_file": "output/banglatribune.xlsx",
-  "db_file": "output/banglatribune.db",
-  "process_percentage": 100.0
-}
+[
+
+
+ {
+    "domain": "https://www.banglatribune.com",
+    "output_file": "output/banglatribune.xlsx",
+    "db_file": "output/banglatribune.db",
+    "process_percentage": 100.0
+  }
+
+]
